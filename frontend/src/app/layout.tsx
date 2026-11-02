@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { QueryProvider } from "@/components/common/query-provider";
+import { site } from "@/lib/site";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ethio Kitchen - Authentic Ethiopian Cuisine",
-  description: "Experience the true flavors of Ethiopia",
+  title: {
+    default: site.name,
+    template: `%s · ${site.name}`,
+  },
+  description: site.description,
 };
 
 export default function RootLayout({
